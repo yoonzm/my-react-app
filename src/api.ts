@@ -3,9 +3,10 @@ function generateRandomUser(): User {
     const randomName = names[Math.floor(Math.random() * names.length)];
     const randomAge = Math.floor(Math.random() * 50) + 18; // 年龄随机范围为18-67岁
 
+    let id = parseInt(`${Math.random() * 10000000000}`).toString();
     return {
-        id: parseInt(`${Math.random() * 10000000000}`).toString(),
-        name: randomName,
+        id,
+        name: `${randomName}_${id}`,
         sex: Math.random() > 0.5 ? 'male' : 'female',
         age: randomAge,
     };
@@ -20,7 +21,7 @@ function generateUsers(count: number): User[] {
 }
 
 // 生成10000条数据
-const users = generateUsers(100);
+const users = generateUsers(10000);
 
 export const api = {
     async getUsers(keyword: string): Promise<User[]> {

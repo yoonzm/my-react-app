@@ -9,6 +9,7 @@ function App() {
     const [options, setOptions] = React.useState<DefaultOptionType[]>([]);
     const [keyword, setKeyword] = React.useState('');
     const [selected, setSelected] = React.useState<DefaultOptionType>();
+    const [selectedList, setSelectedList] = React.useState<DefaultOptionType[]>([]);
 
     React.useEffect(() => {
         api.getUsers(keyword).then((users) => {
@@ -28,11 +29,12 @@ function App() {
                 style={{
                     width: '300px',
                 }}
+                mode="multiple"
                 showSearch
                 placeholder='Search'
-                value={selected}
+                value={selectedList}
                 onSearch={(keyword) => setKeyword(keyword)}
-                onChange={(v) => setSelected(v)}
+                onChange={(v) => setSelectedList(v)}
                 options={options}
             />
         </div>
